@@ -7,7 +7,7 @@ function HeaderBG() {
         <header className='header'>
           <img 
             className='Header__backgraund'
-            src='/img/header.png'  
+            src='/img/Header.png'  
             alt='Fondo del Encabezado' />
         </header>
 
