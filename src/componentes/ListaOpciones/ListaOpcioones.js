@@ -23,7 +23,7 @@ const ListaOpciones = (props) => {
                 value='' 
                 disabled 
                 defaultValue='' 
-                hidden >Seleccionar equipo
+                hidden >Seleccionar Equipo
                 </option> 
 
             { props.equipos.map((equipo, index) => <option key={index} value={equipo} >{equipo}</option> ) };

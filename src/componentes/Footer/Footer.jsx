@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
     
         <img src='/img/Logo.png' alt='org' />
-        <strong>Desarrollado por Alejandro Medina | Alura - 2023 </strong>
+        <strong>Desarrollado por Alejandro Medina | Alura Latam - 2023 </strong>
     
     </footer>
 
