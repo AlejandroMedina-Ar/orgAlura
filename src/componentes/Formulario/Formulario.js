@@ -1,6 +1,6 @@
 import React from 'react';
 import './Formulario.css'
-import CampoTexto from '../CampoTexto/CampoTexto.js';
+import Campo from '../Campo/Campo.js';
 import ListaOpciones from '../ListaOpciones/ListaOpcioones.js';
 import Boton from '../Boton/Boton.js';
 import { useState } from 'react';
@@ -11,6 +11,11 @@ const Formulario = (props) => {
   const [puesto, actualizarPuesto] = useState('')
   const [foto, actualizarFoto] = useState('')
   const [equipo, actualizarEquipo] = useState('')
+
+  const [titulo, actualizarTitulo] = useState("")
+  const [color, actualizarColor ] = useState("")
+
+  const { registrarColaborador, crearEquipo } = props
  
   const manejarEnvio = (e) => {
     e.preventDefault()
@@ -22,8 +27,15 @@ const Formulario = (props) => {
       equipo: equipo
 
     }
-    console.log(datosAEnviar);
+    registrarColaborador(datosAEnviar)
   }  
+
+  const manejarNuevoEquipo = (e) => {
+    e.preventDefault()
+    crearEquipo({ titulo, colorPrimario: color })
+  }
+
+
 
   return (
     <section className='formulario'>
@@ -31,7 +43,7 @@ const Formulario = (props) => {
       <form onSubmit={ manejarEnvio } >
         <h2>Rellena el formulario para crear el colaborador.</h2>
       
-      <CampoTexto 
+      <Campo 
           titulo='Nombre' 
           placeholder='Ingresar Nombre' 
           required={ true } 
@@ -39,7 +51,7 @@ const Formulario = (props) => {
           actualizarValor={ actualizarNombre }
        />
 
-      <CampoTexto 
+      <Campo 
           titulo='Puesto' 
           placeholder='Ingresar Puesto' 
           required={ true } 
@@ -47,7 +59,7 @@ const Formulario = (props) => {
           actualizarValor={ actualizarPuesto } 
        />
           
-      <CampoTexto 
+      <Campo 
           titulo='Foto' 
           placeholder='Ingresar Enlace de Foto' 
           required={ false }
@@ -57,14 +69,38 @@ const Formulario = (props) => {
 
       <ListaOpciones 
           valor={ equipo }
-          actualizarEquipo={ actualizarEquipo } 
+          actualizarEquipo={ actualizarEquipo }
+          equipos={ props.equipos } 
       
       />
 
-      <Boton textobtn='Crear' />
+      <Boton textobtn='Crear Colaborador' />
 
       </form>
 
+      <form onSubmit={ manejarNuevoEquipo } >
+        <h2>Rellena el formulario para crear el equipo.</h2>
+      
+      <Campo 
+          titulo='Titulo' 
+          placeholder='Ingresar Titulo' 
+          required={ true } 
+          valor={ titulo } 
+          actualizarValor={ actualizarTitulo }
+       />
+
+      <Campo 
+          titulo='Color' 
+          placeholder='Ingresar Color en Hexadecimal' 
+          required={ true } 
+          valor={ color } 
+          actualizarValor={ actualizarColor } 
+          type="color"
+       />
+
+       <Boton textobtn='Crear Equipo' />
+
+       </form>
     
     </section>
     
